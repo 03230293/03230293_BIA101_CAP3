@@ -44,6 +44,6 @@ def process_and_sum_lines(data_lines):
 sum_of_numbers = process_and_sum_lines(data_lines)
 
 if sum_of_numbers:
-  print(f"The total sum of all numeric values in the lines is: {sum_of_numbers}")
+  print("The total sum of all numeric values in the lines is: ", sum_of_numbers)
 else:
   print("No numeric values found in the lines.")
