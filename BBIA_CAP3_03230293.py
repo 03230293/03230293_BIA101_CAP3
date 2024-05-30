@@ -1,3 +1,24 @@
+# Github Repo link
+
+#Sonam Peldon
+#BBI A
+#Student ID Number: 03230293
+
+# REFERENCES
+
+# Links that you referred while solving 
+# the problem
+
+# http://link.to.an.article/video.com 
+################################
+
+# SOLUTION
+# Solution Score: <total sum: Sum of Numeric digits: 246816
+#Numbers of alphabetic characters only in line : 50
+#Total index: 246866>
+################################
+
+
 def My_index_calculation(Filename):
     if not isinstance(Filename, str) or not Filename:
         raise ValueError("Invalid filename provided. Please enter a non-empty string.")
@@ -44,7 +65,7 @@ def My_index_calculation(Filename):
         print("Sum of Numeric digits:", total_numeric) # prints only the s 
         print("Numbers of alphabetic characters only in line :", total_alphabetic_char_in_line) #prints the  total only  total alphabetic characters in line
         Total_index=total_numeric+total_alphabetic_char_in_line # total Combination of all digits and non-digits 
-        print(Total_index)
+        print("Total index: ", Total_index)
         data_lines.close()
         
 My_index_calculation("293.txt")
