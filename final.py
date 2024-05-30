@@ -1,40 +1,50 @@
-data_lines=open("293.txt", "r")
-print(data_lines)
+def My_index_calculation(Filename):
+    if not isinstance(Filename, str) or not Filename:
+        raise ValueError("Invalid filename provided. Please enter a non-empty string.")
+
+    try:
+        with open("293.txt", "r") as data_lines : #to read a text file
+            
+            total_numeric = 0 #Initializing total sum to calculate total numeric 
+            total_alphabetic_char_in_line = 0 #Initializing total sum to calculate total non-numeric 
+            
+            # Using forloop to get each characters from text file.
+            for line in data_lines:
+                numeric_digits = ''.join(value for value in line if value.isdigit()) #to extract the numeric part from a string (line)
+
+                # Check for empty numeric part to handle lines with only digits
+                if not numeric_digits:
+                    print("Line only contains non-numeric: ",line )  #line.strip()
+                    total_alphabetic_char_in_line += 1  # Count lines with only digits
+                    continue  # Skip to the next line for better efficiency
+            
+                first_digit = numeric_digits[0] #To get first digit from numeric charcaters 
+                last_digit = numeric_digits[-1] # to get last digit from numeric charcaters
+
+                # Ensure both digits are valid before conversion
+                if first_digit.isdigit() and last_digit.isdigit():
+                    numbers_in_line = first_digit + last_digit #Adding first and last digits 
+                    total_numeric += int(numbers_in_line) #converting digits into int and Adding the numbers
+                    print("First and last numeric:", numbers_in_line)
+
+                else:
+                    print(line, "Line contain non-numeric characters.") #Non-numeric characters
+                    total_alphabetic_char_in_line += 1  # Count lines without digits
 
 
-try:
-    total_sum = 0
-    for line in data_lines:
-        numeric_part = ''.join(value for value in line if value.isdigit())
+    except FileNotFoundError: #if file is not found, it will be executed  
+        print("Error: File not found.")
 
-            # Check if any digits were found
-        if numeric_part:
-            first_digit = numeric_part[0] if numeric_part else None
-            last_digit = numeric_part[-1] if numeric_part else None
-
-                # Check if both digits are valid
-            if first_digit is not None and last_digit is not None:
-                number = int(first_digit + last_digit)
-                print("First and last numeric in a line:", number)
-                total_sum += number  # Add the extracted number to the sum
-                # print(total_sum)
-
-        else:
-            print("Line only contains digits at the beginning/end", numeric_part)
-                # total_sum += number  # Add the extracted number to the sum
-                # print(total_sum)
-
-       
-# except ValueError:
-#         print(line," it doesn't add becuase it is non-numeric characters")
-except FileNotFoundError:
-    print("Error: File '293.txt' not found.")
-
-# except (IOError, OSError) as e:  # Catch other potential file I/O errors
-#     print("Error: An error occurred while accessing the file:", e)
-
-except ValueError:
-    print(data_lines, "it doesn't add because it is non-numeric characters")
-
-else:
-    print(total_sum)
+    except ValueError as e:  #If name error found , it will get printed 
+        print(e)
+ 
+#if there is no error found, then we will calculate the the total numeric, total alphabetic characters  in line and adding of bith digits
+    # else:
+    finally:
+        print("Sum of Numeric digits:", total_numeric) # prints only the s 
+        print("Numbers of alphabetic characters only in line :", total_alphabetic_char_in_line) #prints the  total only  total alphabetic characters in line
+        Total_index=total_numeric+total_alphabetic_char_in_line # total Combination of all digits and non-digits 
+        print(Total_index)
+        data_lines.close()
+        
+My_index_calculation("293.txt")
